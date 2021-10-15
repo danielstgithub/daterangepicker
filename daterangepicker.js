@@ -575,6 +575,7 @@
                 var hour, minute, second;
                 if (this.endDate) {
                     year = parseInt(this.container.find('.left .yearselect').val(), 10);
+                    month = parseInt(this.container.find('.left .monthselect').val(), 10);
                     hour = parseInt(this.container.find('.left .hourselect').val(), 10);
                     minute = parseInt(this.container.find('.left .minuteselect').val(), 10);
                     if (isNaN(minute)) {
@@ -587,6 +588,10 @@
                             hour += 12;
                         if (ampm === 'AM' && hour === 12)
                             hour = 0;
+                    }
+                    if(month) {
+                        this.leftCalendar.month.month(month);
+                        this.rightCalendar.month.month(parseInt(this.container.find('.right .monthselect').val(), 10));
                     }
                     if(year) {
                         this.leftCalendar.month.year(year);
