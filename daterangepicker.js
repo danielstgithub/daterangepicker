@@ -720,21 +720,21 @@
                 var currentMonth = calendar[1][1].month();
                 var currentYear = calendar[1][1].year();
                 var maxYear = (maxDate && maxDate.year()) || (this.maxYear);
-                var minYear = (side == "right" ? this.leftCalendar.month.year() : ((minDate && minDate.year()) || (currentYear - 50)));
-                var inMinYear = currentYear == minYear;
-                var inMaxYear = currentYear == maxYear;
+                var minYear = (side == "right" ? this.leftCalendar.month.year() : (this.minYear ? this.minYear : ((minDate && minDate.year()) || (currentYear - 50))));
+                // var inMinYear = currentYear == minYear;
+                // var inMaxYear = currentYear == maxYear;
 
                 var monthHtml = '<select class="monthselect">';
                 for (var m = 0; m < 12; m++) {
-                    if ((!inMinYear || (minDate && m >= minDate.month())) && (!inMaxYear || (maxDate && m <= maxDate.month()))) {
+                    // if ((!inMinYear || (minDate && m >= minDate.month())) && (!inMaxYear || (maxDate && m <= maxDate.month()))) {
                         monthHtml += "<option value='" + m + "'" +
                             (m === currentMonth ? " selected='selected'" : "") +
                             ">" + this.locale.monthNames[m] + "</option>";
-                    } else {
-                        monthHtml += "<option value='" + m + "'" +
-                            (m === currentMonth ? " selected='selected'" : "") +
-                            " disabled='disabled'>" + this.locale.monthNames[m] + "</option>";
-                    }
+                    // } else {
+                    //     monthHtml += "<option value='" + m + "'" +
+                    //         (m === currentMonth ? " selected='selected'" : "") +
+                    //         " disabled='disabled'>" + this.locale.monthNames[m] + "</option>";
+                    // }
                 }
                 monthHtml += "</select>";
 
@@ -1428,12 +1428,12 @@
             var month = parseInt(cal.find('.monthselect').val(), 10);
             var year = cal.find('.yearselect').val();
 
-            if (!isLeft) {
-                if (year < this.startDate.year() || (year == this.startDate.year() && month < this.startDate.month())) {
-                    month = this.startDate.month();
-                    year = this.startDate.year();
-                }
-            }
+            // if (!isLeft) {
+            //     if (year < this.startDate.year() || (year == this.startDate.year() && month < this.startDate.month())) {
+            //         month = this.startDate.month();
+            //         year = this.startDate.year();
+            //     }
+            // }
 
             if (this.minDate) {
                 if (year < this.minDate.year() || (year == this.minDate.year() && month < this.minDate.month())) {
